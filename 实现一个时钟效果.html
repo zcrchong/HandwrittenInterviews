@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>时钟</title>
+    <style>
+        /*// 设置时钟的样式*/
+        #clock {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            border-radius: 50%;
+            position: relative;
+        }
+        /*// 设置指针的共同样式*/
+           .hand {
+               position: absolute;
+               left: 50%;
+               top: 50%;
+               /*在 transform-origin: 50% 100%; 中，50% 表示基点在元素的水平中心线上，
+               也就是元素的中心点，而 100% 表示基点在元素的垂直底部线上
+               ，也就是元素的底部中心点。这就意味着，当我们对这个元素进行旋转变换时，
+               它会以底部中心点为基点进行旋转。*/
+               transform-origin: 50% 100%;
+           }
+        /*// 设置时针样式*/
+           #hour-hand {
+               width: 8px;
+               height: 60px;
+               background-color: black;
+               margin-left: -4px;
+               margin-top: -60px;
+           }
+        /*// 设置分针样式*/
+           #minute-hand {
+               width: 5px;
+               height: 80px;
+               background-color: black;
+               margin-left: -2.5px;
+               margin-top: -80px;
+           }
+        /*// 设置秒针样式*/
+           #second-hand {
+               width: 2px;
+               height: 100px;
+               background-color: red;
+               margin-left: -1px;
+               margin-top: -100px;
+           }
+        /*// 设置刻度盘样式*/
+           .tick {
+               position: absolute;
+               width: 2px;
+               height: 10px;
+               background-color: black;
+               left: 50%;
+               top: 90px;
+               transform-origin: 50% 100%;
+           }
+    </style>
+</head>
+<body>
+<div id="clock"></div>
+<script>
+    // 绘制时钟
+    function drawClock() {
+        var clock = document.getElementById("clock");
+        // clock.offsetWidth 获取时钟元素的宽度
+        var radius = clock.offsetWidth / 2;
+        // center表示时钟的中心点坐标
+        var center = {x: radius, y: radius};
+
+        // 画时针
+        // 创建一个divDOM节点，命名为hourHand
+        var hourHand = document.createElement("div");
+        hourHand.className = "hand";
+        hourHand.id = "hour-hand";
+        // 在js中将hourHand添加为clock的子元素
+        clock.appendChild(hourHand);
+
+        // 画分针
+        var minuteHand = document.createElement("div");
+        minuteHand.className = "hand";
+        minuteHand.id = "minute-hand";
+        clock.appendChild(minuteHand);
+
+        // 画秒针
+        var secondHand = document.createElement("div");
+        secondHand.className = "hand";
+        secondHand.id = "second-hand";
+        clock.appendChild(secondHand);
+
+        // 画刻度盘
+        for (var i = 0; i < 12; i++) {
+            var tick = document.createElement("div");
+            tick.className = "tick";
+            var tickAngle = i * 30 - 90;
+            tick.style.transform = "rotate(" + tickAngle + "deg) translate(0, -" + (radius - 20) + "px)";
+            clock.appendChild(tick);
+        }
+
+        updateClock();
+    }
+
+    // 更新时钟
+    function updateClock() {
+        var now = new Date();
+        var hour = now.getHours() % 12;
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+
+        // 计算指针角度
+        var hourAngle = hour * 30 + minute / 2 - 90;
+        var minuteAngle = minute * 6 - 90;
+        var secondAngle = second * 6 - 90;
+
+        // 更新指针角度
+        var hourHand = document.getElementById("hour-hand");
+        hourHand.style.transform = "rotate(" + hourAngle + "deg)";
+
+        var minuteHand = document.getElementById("minute-hand");
+        minuteHand.style.transform = "rotate(" + minuteAngle + "deg)";
+
+        var secondHand = document.getElementById("second-hand");
+        secondHand.style.transform = "rotate(" + secondAngle + "deg)";
+
+        // 每秒更新一次
+        setTimeout(updateClock, 1000);
+    }
+
+    drawClock();
+</script>
+</body>
+</html>
