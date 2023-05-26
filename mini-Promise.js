@@ -40,12 +40,13 @@ class MiniPromise {
             reject(err)
         }
 
-        then(onFulfilled , onRejected){
-            if(this.status === 'fulfilled'){
-                onFulfilled()
-            } else if(this.status === 'rejected') {
-                onRejected()
-            }
+    }
+    then(onFulfilled , onRejected) {
+        if(this.status === 'fulfilled'){
+            onFulfilled()
+        } else if(this.status === 'rejected') {
+            onRejected()
         }
     }
+
 }
