@@ -14,7 +14,7 @@
 function isBracketMatch(str){
     let stack = []
     for (let i = 0; i < str.length; i++) {
-        if(str[i] == '(' || str[i] == '[' || str[i] == '{'){
+        if(str[i] === '(' || str[i] === '[' || str[i] === '{'){
             stack.push(str[i])
         } else if(str[i] === ')' || str[i] === ']' || str[i] === '}'){
             let top = stack.pop()
