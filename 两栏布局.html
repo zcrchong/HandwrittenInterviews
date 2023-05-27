@@ -1,0 +1,45 @@
+<!--手写 头部底部固定中间两栏布局-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header{
+            height: 60px;
+            background-color: yellowgreen;
+        }
+        .content{
+            display:flex;
+            flex:1
+        }
+        .left{
+            flex: 1;
+            background-color: grey;
+        }
+        .right{
+            flex: 2;
+            background-color: antiquewhite;
+        }
+        .footer{
+            height: 60px;
+            background-color: indianred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">头部</header>
+        <div class="content">
+            <div class="left">左侧栏</div>
+            <div class="right">右侧栏</div>
+        </div>
+        <footer class="footer">底部</footer>
+    </div>
+</body>
+</html>
