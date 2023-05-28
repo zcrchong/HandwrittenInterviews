@@ -16,12 +16,15 @@ function add(x) {
 
 console.log(add(1)(2)(3)(4).toString()); // 10
 // 第二种方法：reduce
-const sum = (...args) => {
-     const f = (...rets) => {
-         return sum(...args,...rets)
-     }
-     f.valueOf = () => {
-         return args.reduce((x,y) => x+y)
+function sum(...args) {
+    function innerSum(...rets) {
+        return sum(...args, ...rets);
     }
-    return f
+
+    innerSum.valueOf = function() {
+        return args.reduce((res, y) => res + y);
+    };
+
+    return innerSum;
 }
+console.log(sum(1)(2)(3)(4).valueOf()); // 10
