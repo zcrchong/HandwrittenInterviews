@@ -2,7 +2,7 @@
 var diameterOfBinaryTree = function (root) {
     let maxDiameter = 0;
     const maxDepth = (root) => {
-        if(root !== null) return 0
+        if(root === null) return 0
         let left = maxDepth(root.left)
         let right = maxDepth(root.right)
         let myDiameter = left + right

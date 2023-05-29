@@ -4,7 +4,7 @@
 
 //1.
 function traverse(root,level){
-    if(root!== null) return
+    if(root === null) return
     console.log(`${root}在第${level}层`)
     traverse(root.left,level + 1)
     traverse(root.left,level + 1)
@@ -13,7 +13,7 @@ function traverse(root,level){
 
 //2.后序遍历，需要直到子节点上的东西
 function traverse2(root){
-    if(root !== null) return 0
+    if(root === null) return 0
     let left = traverse2(root.left)
     let right =traverse2(root.right)
     console.log(`${root.left}上左节点有${left}个节点，右节点上有${right}个节点`)
