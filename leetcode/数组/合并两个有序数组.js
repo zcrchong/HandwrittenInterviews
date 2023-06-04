@@ -35,7 +35,7 @@ const arr1 = [1, 3, 5, 7];
 const arr2 = [2, 4, 6, 8];
 console.log(mergeSortedArrays(arr1, arr2)); // 输出: [1, 2, 3, 4, 5, 6, 7, 8]
 
-// 测试用例2
+// 测试用例2//
 const arr3 = [1, 2, 3];
 const arr4 = [4, 5, 6];
 console.log(mergeSortedArrays(arr3, arr4)); // 输出: [1, 2, 3, 4, 5, 6]
