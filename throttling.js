@@ -8,6 +8,6 @@ function throttling(fn,delay){
         setTimeout(() => {
             timer = true
             fn.call(context,args)
-        })
+        },delay)
     }
 }
