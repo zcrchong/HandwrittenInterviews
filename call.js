@@ -17,3 +17,21 @@ function myCall(fn,context){
     delete context.fn
     return result
 }
+
+// apply
+function myApply(fn,context){
+    context = context || window
+    context.fn = fn
+    var result = context.fn(...arguments)
+    delete context.fn
+    return result
+}
+// bind
+function myBind(context){
+    var fn = this
+    var args = Array.prototype.slice.call(arguments,1)
+    return function (){
+        var bindArgs = Array.prototype.slice(arguments)
+        return fn.apply(context,args.concat(bindArgs))
+    }
+}
